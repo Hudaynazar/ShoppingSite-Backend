@@ -1,0 +1,6 @@
+@Arcobaleno_HostAddress = http://localhost:5073
+
+GET {{Arcobaleno_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
