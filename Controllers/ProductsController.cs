@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Arcobaleno.Data;
 using Arcobaleno.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Arcobaleno.Controllers
 {
@@ -36,6 +37,7 @@ namespace Arcobaleno.Controllers
             return product;
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
@@ -45,6 +47,7 @@ namespace Arcobaleno.Controllers
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -72,6 +75,7 @@ namespace Arcobaleno.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
